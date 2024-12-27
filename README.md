@@ -1,29 +1,8 @@
-# KON
+# KON!
+ > 这是我写的第一个Vue3项目，技术较差大佬勿喷！
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+轻音部の小窝，Vue3+MDUI1重构版。 
+欢迎fork提交代码大家一起努力罢！
+## 运行
+ - npm i
+ - npm run dev
