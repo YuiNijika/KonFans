@@ -1,0 +1,49 @@
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -520;
+    pointer-events: none;
+}
+
+body::before {
+    background: linear-gradient(90deg, rgba(247, 149, 51, .1), rgba(243, 112, 85, .1) 15%, rgba(239, 78, 123, .1) 30%, rgba(161, 102, 171, .1) 44%, rgba(80, 115, 184, .1) 58%, rgba(16, 152, 173, .1) 72%, rgba(7, 179, 155, .1) 86%, rgba(109, 186, 130, .1));
+}
+
+.mdui-btn {
+    border-radius: 8px;
+}
+
+.mdui-card {
+    background-color: #ffffffb0;
+}
+@media (max-width: 1024px) {
+    #Sidebar .mdui-card {
+        background-color: #fff;
+    }
+}
+
+.Wallpaper {
+    -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+    column-gap: 10px;
+}
+@media (max-width: 768px) { /* 手机端样式 */
+    .Wallpaper {
+        column-count: 2;
+    }
+}
+.Wallpaper-item {
+    break-inside: avoid;
+    margin-bottom: 10px;
+}
+
+.Wallpaper-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}

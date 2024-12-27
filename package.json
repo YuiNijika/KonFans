@@ -1,0 +1,24 @@
+{
+  "name": "kon",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "vue": "^3.5.13",
+    "vue-markdown": "^2.2.4",
+    "vue-meta": "^3.0.0-alpha.2",
+    "vue-router": "^4.5.0",
+    "vue3-markdown-it": "^1.0.10"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "vite": "^6.0.5",
+    "vite-plugin-vue-devtools": "^7.6.8"
+  }
+}
