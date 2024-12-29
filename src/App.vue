@@ -22,7 +22,7 @@ import Sidebar from './components/Sidebar.vue'
     <Sidebar />
     <div class="mdui-appbar-with-toolbar mdui-container">
       <div class="mdui-card mdui-hoverable mdui-m-b-2">
-        <div class="mdui-card-primary">
+        <div class="mdui-card-content">
           <router-view></router-view>
         </div>
       </div>

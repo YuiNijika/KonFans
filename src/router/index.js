@@ -1,4 +1,4 @@
-// src/router/index.js
+// src/router/router.js
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../components/views/Home.vue';
 import Meme from '../components/views/Meme.vue';

@@ -26,24 +26,42 @@ body::before {
     }
 }
 
-.Wallpaper {
-    -webkit-column-count: 3; /* Chrome, Safari, Opera */
-    -moz-column-count: 3; /* Firefox */
-    column-count: 3;
-    column-gap: 10px;
+body .Wallpaper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    grid-auto-flow: dense; /* 确保网格项紧密排列 */
+    margin: 0 auto;
 }
-@media (max-width: 768px) { /* 手机端样式 */
-    .Wallpaper {
-        column-count: 2;
-    }
-}
-.Wallpaper-item {
-    break-inside: avoid;
+
+body .Wallpaper-item {
+    width: 20%; /* 默认宽度为20%，即一排5个 */
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.2s;
     margin-bottom: 10px;
 }
 
-.Wallpaper-item img {
-    width: 100%;
+body .Wallpaper-item:hover {
+    transform: scale(1.05);
+}
+
+body .Wallpaper-item img {
+    width: 90%;
     height: auto;
+    display: block;
     border-radius: 8px;
+}
+
+@media (max-width: 1023px) {
+    body .Wallpaper-item {
+        width: 33.333%; /* 平板端：一排3个 */
+    }
+}
+
+@media (max-width: 767px) {
+    body .Wallpaper-item {
+        width: 50%; /* 手机端：一排2个 */
+    }
 }
