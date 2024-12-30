@@ -29,7 +29,7 @@ import Sidebar from './components/Sidebar.vue'
     </div>
   </main>
   <footer style="margin-top: auto;">
-    <div class="mdui-valign"><img src="https://www.miomoe.cn/usr/themes/KON/Assets/images/end.png" class="mdui-center mdui-img-fluid" style="opacity: 0.85;"></div>
+    <div class="mdui-valign"><img src="https://messages.miomoe.cn/usr/themes/KON/Assets/images/end.png" class="mdui-center mdui-img-fluid" style="opacity: 0.85;"></div>
     <div class="mdui-card" style="border-radius: 0px;">
       <div class="mdui-container">
         <div class="mdui-row mdui-p-y-4">
