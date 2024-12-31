@@ -66,12 +66,25 @@ body .Wallpaper-item img {
     }
 }
 
+/* main.css */
 body {
-    margin: 0;
-    overflow: hidden;
+    margin: 0
 }
+
 .snowflake {
-    position: absolute;
+    position: fixed;
     color: #E0E0E0;
     font-size: 20px;
+    animation: fall 10s linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        top: -10px;
+        transform: translateX(0);
+    }
+    100% {
+        top: 100%;
+        transform: translateX(100vw);
+    }
 }

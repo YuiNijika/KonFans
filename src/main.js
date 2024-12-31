@@ -37,33 +37,15 @@ function createSnowflake() {
 
     const size = Math.random() * 20 + 10; // 雪花大小范围
     let initialX = Math.random() * window.innerWidth;
-    let initialY = -10 - Math.random() * 500; // 从顶部之外的随机位置开始下落
 
     snowflake.style.fontSize = `${size}px`;
     snowflake.style.left = `${initialX}px`;
-    snowflake.style.top = `${initialY}px`;
 
     document.body.appendChild(snowflake);
 
-    const drift = Math.random() * 2 - 1; // 飘落的随机偏移量
-    const speed = Math.random() * 2 + 1; // 雪花的下落速度
-
-    function moveSnowflake() {
-        initialY += speed;
-        initialX += drift;
-
-        snowflake.style.top = `${initialY}px`;
-        snowflake.style.left = `${initialX}px`;
-
-        if (initialY < window.innerHeight && initialX > 0 && initialX < window.innerWidth) {
-            requestAnimationFrame(moveSnowflake);
-        } else {
-            snowflake.remove();
-            createSnowflake(); // 创建新的雪花
-        }
-    }
-
-    moveSnowflake();
+    setTimeout(() => {
+        snowflake.remove();
+    }, 10000); // 与动画时间一致
 }
 
 function snowfall() {
