@@ -65,3 +65,13 @@ body .Wallpaper-item img {
         width: 50%; /* 手机端：一排2个 */
     }
 }
+
+body {
+    margin: 0;
+    overflow: hidden;
+}
+.snowflake {
+    position: absolute;
+    color: #E0E0E0;
+    font-size: 20px;
+}
