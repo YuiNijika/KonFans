@@ -9,6 +9,7 @@ export default {
     },
     created() {
         this.fetchPosts();
+        document.title = '鼠子Blog'; 
     },
     methods: {
         async fetchPosts() {
@@ -31,7 +32,6 @@ export default {
         }
     }
 };
-document.title = '鼠子Blog';
 </script>
 
 <template>
