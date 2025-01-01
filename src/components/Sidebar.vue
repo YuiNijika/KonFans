@@ -7,7 +7,7 @@ const debugMessage = ref('');
 
 const menuItems = ref([
   { icon: 'home', text: '首页', route: '/' },
-  { icon: 'rss_feed', text: '博客', url: 'https://blog.miomoe.cn/' },
+  { icon: 'rss_feed', text: '博客', route: '/Blog' },
   { icon: 'camera', text: '哔哩哔哩', url: 'https://space.bilibili.com/435502585' },
   { subheader: '壁纸' },
   { icon: 'child_care', text: '表情包', route: '/Meme' },
