@@ -12,7 +12,7 @@ const menuItems = ref([
   { subheader: '壁纸' },
   { icon: 'child_care', text: '表情包', route: '/Meme' },
   { icon: 'extension', text: '全部壁纸', route: '/Wallpaper' },
-  { icon: 'extension', text: '电脑壁纸', route: '/Wallpaper/PC' },
+  { icon: 'extension', text: '电脑壁纸', route: '/Wallpaper/Computer' },
   { icon: 'extension', text: '手机壁纸', route: '/Wallpaper/Mobile' },
   { icon: 'extension', text: '轻音图网壁纸', route: '/Wallpaper/Space' },
   { subheader: '其他' },
