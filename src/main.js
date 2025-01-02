@@ -7,7 +7,7 @@ import { createApp } from 'vue';
 import App from './App.vue';
 
 // 引入路由配置
-import router from './router';
+import router from './router.js';
 
 // 引入 vue-lazyload
 import VueLazyload from 'vue-lazyload';

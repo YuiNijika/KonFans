@@ -1,14 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../components/views/Home.vue';
-import Blog from '../components/views/Blog.vue';
-import BlogDetail from '../components/views/BlogDetail.vue'; 
-import Meme from '../components/views/Meme.vue';
-import Wallpaper from '../components/views/Wallpaper.vue';
-import WallpaperPC from '../components/views/WallpaperPC.vue';
-import WallpaperMobile from '../components/views/WallpaperMobile.vue';
-import WallpaperSpace from '../components/views/WallpaperSpace.vue';
-import OpenAPI from '../components/views/OpenAPI.vue';
-import NotFound from '../components/views/NotFound.vue';
+import Home from './components/views/Home.vue';
+import Blog from './components/views/Blog.vue';
+import BlogDetail from './components/views/BlogDetail.vue'; 
+import Meme from './components/views/Meme.vue';
+import Wallpaper from './components/views/Wallpaper.vue';
+import WallpaperPC from './components/views/WallpaperPC.vue';
+import WallpaperMobile from './components/views/WallpaperMobile.vue';
+import WallpaperSpace from './components/views/WallpaperSpace.vue';
+import OpenAPI from './components/views/OpenAPI.vue';
+import NotFound from './components/views/NotFound.vue';
 
 const routes = [
     {
@@ -37,17 +37,17 @@ const routes = [
         component: Wallpaper
     },
     {
-        path: '/WallpaperPC',
+        path: '/Wallpaper/Computer',
         name: 'WallpaperPC',
         component: WallpaperPC
     },
     {
-        path: '/WallpaperMobile',
+        path: '/Wallpaper/Mobile',
         name: 'WallpaperMobile',
         component: WallpaperMobile
     },
     {
-        path: '/WallpaperSpace',
+        path: '/Wallpaper/Space',
         name: 'WallpaperSpace',
         component: WallpaperSpace
     },

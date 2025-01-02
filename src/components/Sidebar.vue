@@ -12,15 +12,19 @@ const menuItems = ref([
   { subheader: '壁纸' },
   { icon: 'child_care', text: '表情包', route: '/Meme' },
   { icon: 'extension', text: '全部壁纸', route: '/Wallpaper' },
-  { icon: 'extension', text: '电脑壁纸', route: '/WallpaperPC' },
-  { icon: 'extension', text: '手机壁纸', route: '/WallpaperMobile' },
-  { icon: 'extension', text: '轻音图网壁纸', route: '/WallpaperSpace' },
+  { icon: 'extension', text: '电脑壁纸', route: '/Wallpaper/PC' },
+  { icon: 'extension', text: '手机壁纸', route: '/Wallpaper/Mobile' },
+  { icon: 'extension', text: '轻音图网壁纸', route: '/Wallpaper/Space' },
   { subheader: '其他' },
   { icon: 'beenhere', text: 'OpenAPI', route: '/OpenAPI' },
   { icon: 'sms', text: '前往留言', url: 'https://messages.miomoe.cn/' },
   { icon: 'videocam', text: '观看轻音全集', url: 'https://messages.miomoe.cn/Video' }
 ]);
 
+/**
+ * 菜单项点击处理函数
+ * @param {Object} item - 菜单项对象
+ */
 const navigate = (item) => {
   if (item.route) {
     debugMessage.value = `${item.text} clicked`;
@@ -37,19 +41,15 @@ const navigate = (item) => {
       <img src="/logo.png" class="mdui-img-fluid">
       <div class="mdui-divider"></div>
       <ul class="mdui-list">
-        <template v-for="(item, index) in menuItems" :key="index">
+        <template v-for="(item, index) in menuItems" :key="index" v-memo>
           <li v-if="item.subheader" class="mdui-subheader">{{ item.subheader }}</li>
-          <a v-else-if="item.url" :href="item.url" target="_blank">
-            <li class="mdui-list-item mdui-ripple">
-              <i class="mdui-list-item-icon mdui-icon material-icons">{{ item.icon }}</i>
-              <div class="mdui-list-item-content">{{ item.text }}</div>
-            </li>
+          <a v-else-if="item.url" :href="item.url" target="_blank" class="mdui-list-item mdui-ripple">
+            <i class="mdui-list-item-icon mdui-icon material-icons">{{ item.icon }}</i>
+            <div class="mdui-list-item-content">{{ item.text }}</div>
           </a>
-          <a v-else @click="navigate(item)">
-            <li class="mdui-list-item mdui-ripple">
-              <i class="mdui-list-item-icon mdui-icon material-icons">{{ item.icon }}</i>
-              <div class="mdui-list-item-content">{{ item.text }}</div>
-            </li>
+          <a v-else @click="navigate(item)" href="javascript:void(0)" class="mdui-list-item mdui-ripple">
+            <i class="mdui-list-item-icon mdui-icon material-icons">{{ item.icon }}</i>
+            <div class="mdui-list-item-content">{{ item.text }}</div>
           </a>
         </template>
       </ul>
