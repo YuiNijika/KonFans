@@ -38,7 +38,7 @@ const navigate = (item) => {
 <template>
   <div id="Sidebar">
     <div id="drawer" class="mdui-drawer mdui-card" style="border-radius: 0px;">
-      <img src="/logo.png" class="mdui-img-fluid">
+      <img src="/assets/logo.png" class="mdui-img-fluid">
       <div class="mdui-divider"></div>
       <ul class="mdui-list">
         <template v-for="(item, index) in menuItems" :key="index" v-memo>

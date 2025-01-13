@@ -1,3 +1,30 @@
+body:after {
+    content: " ";
+    position: fixed;
+    inset: 0;
+    background-color: white;
+    z-index: 9999999;
+    background-image: url(/assets/logo.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 30%;
+    animation: fadeOut 3s;
+    animation-fill-mode: forwards;
+    -webkit-transition: fadeOut 3s;
+    transition: fadeOut 3s;
+    pointer-events: none;
+}
+
+@keyframes fadeOut {
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
 body::before {
     content: '';
     position: fixed;
@@ -20,6 +47,7 @@ body::before {
 .mdui-card {
     background-color: #ffffffb0;
 }
+
 @media (max-width: 1024px) {
     #Sidebar .mdui-card {
         background-color: #fff;
@@ -30,12 +58,14 @@ body .Wallpaper {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 16px;
-    grid-auto-flow: dense; /* 确保网格项紧密排列 */
+    grid-auto-flow: dense;
+    /* 确保网格项紧密排列 */
     margin: 0 auto;
 }
 
 body .Wallpaper-item {
-    width: 20%; /* 默认宽度为20%，即一排5个 */
+    width: 20%;
+    /* 默认宽度为20%，即一排5个 */
     border-radius: 8px;
     overflow: hidden;
     position: relative;
@@ -56,13 +86,15 @@ body .Wallpaper-item img {
 
 @media (max-width: 1023px) {
     body .Wallpaper-item {
-        width: 33.333%; /* 平板端：一排3个 */
+        width: 33.333%;
+        /* 平板端：一排3个 */
     }
 }
 
 @media (max-width: 767px) {
     body .Wallpaper-item {
-        width: 50%; /* 手机端：一排2个 */
+        width: 50%;
+        /* 手机端：一排2个 */
     }
 }
 
@@ -83,6 +115,7 @@ body {
         top: -10px;
         transform: translateX(0);
     }
+
     100% {
         top: 100%;
         transform: translateX(100vw);

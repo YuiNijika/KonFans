@@ -21,8 +21,8 @@ mdui.mutation();
 // 使用 vue-lazyload
 app.use(VueLazyload, {
     preLoad: 1.3,
-    error: '/error.jpg', // 错误图片路径
-    loading: '/load.gif', // 加载中图片路径
+    error: '/assets/error.jpg', // 错误图片路径
+    loading: '/assets/load.gif', // 加载中图片路径
     attempt: 1
 });
 
