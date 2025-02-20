@@ -1,8 +1,14 @@
 # KON!
- > 这是我写的第一个Vue3项目，技术较差大佬勿喷！
 
-轻音部の小窝，Vue3+MDUI1重构版。 
-欢迎fork提交代码大家一起努力罢！
+> 这是我写的第一个 Vue3 项目的重构版，技术较差大佬勿喷！
+
+欢迎 fork 提交代码大家一起努力罢！
+
+哔哩哔哩[@Tomoriゞ](https://space.bilibili.com/435502585)
+
 ## 运行
- - npm i
- - npm run dev
+
+- npm i
+- npm i -D vuetify vite-plugin-vuetify
+- npm i @mdi/font
+- npm run dev

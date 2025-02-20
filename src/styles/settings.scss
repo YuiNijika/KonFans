@@ -1,0 +1,97 @@
+/**
+ * src/styles/settings.scss
+ *
+ * Configures SASS variables and Vuetify overwrites
+ */
+
+// https://vuetifyjs.com/features/sass-variables/`
+// @use 'vuetify/settings' with (
+//   $color-pack: false
+// );
+
+
+body:after {
+    content: " ";
+    position: fixed;
+    inset: 0;
+    background-color: rgb(33,33,33);
+    z-index: 999999;
+    background-image: url(/assets/logo.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 30%;
+    animation: fadeOut 2s;
+    animation-fill-mode: forwards;
+    -webkit-transition: fadeOut 2s;
+    transition: fadeOut 2s;
+    pointer-events: none;
+}
+
+@keyframes fadeOut {
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+body {
+    display: block;
+    margin: 0px;
+}
+
+a, a:hover {
+    color: unset;
+    text-decoration: unset;
+}
+
+body .view-image {
+    z-index: 114514;
+}
+
+body .Wallpaper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    grid-auto-flow: dense;
+}
+
+body .Wallpaper-item {
+    width: 30%;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.2s;
+    margin-bottom: 10px;
+}
+
+body .Wallpaper-item:hover {
+    transform: scale(1.05);
+}
+
+body .Wallpaper-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+@media (max-width: 1023px) {
+    body .Wallpaper-item {
+        width: 33.333%;
+    }
+    body .Wallpaper-item img {
+        width: 80%;
+    }
+}
+
+@media (max-width: 767px) {
+    body .Wallpaper-item {
+        width: 45%;
+    }
+    body .Wallpaper-item img {
+        width: 100%;
+    }
+}
