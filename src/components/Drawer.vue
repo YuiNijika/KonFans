@@ -10,6 +10,7 @@
       <router-link v-for="(item, index) in navItems" :key="index" :to="item.to">
         <v-list-item :prepend-icon="item.icon" :title="item.title" :value="item.value" />
       </router-link>
+      <v-divider></v-divider>
       <a href="https://blog.miomoe.cn/Develop/KonAPI.html" target="_blank">
         <v-list-item prepend-icon="mdi-api" title="OpenAPI" value="api" />
       </a>
@@ -67,6 +68,7 @@ export default {
         { icon: 'mdi-laptop', title: '电脑壁纸', value: 'pcWallpaper', to: '/Desktop' },
         { icon: 'mdi-cellphone', title: '手机壁纸', value: 'mobileWallpaper', to: '/Mobile' },
         { icon: 'mdi-panorama-variant-outline', title: '轻音图网', value: 'spaceWallpaper', to: '/Space' },
+        { icon: 'mdi-panorama-variant', title: '轻音表情包', value: 'meme', to: '/Meme' },
       ],
     }
   },
