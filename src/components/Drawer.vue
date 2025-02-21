@@ -11,7 +11,7 @@
         <v-list-item :prepend-icon="item.icon" :title="item.title" :value="item.value" />
       </router-link>
       <v-divider></v-divider>
-      <a href="https://blog.miomoe.cn/Develop/KonAPI.html" target="_blank">
+      <a href="https://blog.miomoe.cn/article/33" target="_blank">
         <v-list-item prepend-icon="mdi-api" title="OpenAPI" value="api" />
       </a>
       <a href="https://space.bilibili.com/435502585" target="_blank">
