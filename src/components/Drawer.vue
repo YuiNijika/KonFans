@@ -69,6 +69,7 @@ export default {
         { icon: 'mdi-cellphone', title: '手机壁纸', value: 'mobileWallpaper', to: '/Mobile' },
         { icon: 'mdi-panorama-variant-outline', title: '轻音图网', value: 'spaceWallpaper', to: '/Space' },
         { icon: 'mdi-panorama-variant', title: '轻音表情包', value: 'meme', to: '/Meme' },
+        { icon: 'mdi-heart-flash', title: 'AlphaCoders', value: 'alphacoders', to: '/AlphaCoders' }
       ],
     }
   },
