@@ -11,6 +11,10 @@
         <v-list-item :prepend-icon="item.icon" :title="item.title" :value="item.value" />
       </router-link>
       <v-divider></v-divider>
+        <router-link to="/Love">
+          <v-list-item prepend-icon="mdi-account-group" title="同人作品" value="love" />
+        </router-link>
+      <v-divider></v-divider>
       <a href="https://blog.miomoe.cn/article/33" target="_blank">
         <v-list-item prepend-icon="mdi-api" title="OpenAPI" value="api" />
       </a>
@@ -59,6 +63,8 @@
 </template>
 
 <script>
+import { ro } from 'vuetify/locale';
+
 export default {
   data() {
     return {

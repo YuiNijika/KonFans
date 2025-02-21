@@ -2,57 +2,52 @@
     <div v-if="isLoading" class="loading-text">
         加载中...
     </div>
-    <div v-else>
-        <v-card>
-            <v-card-title>
-                {{ Kon.data.title }}
-            </v-card-title>
-            <v-card-subtitle>
-                {{ Kon.data.subTitle }}
-            </v-card-subtitle>
-            <v-card-text>
-                <div v-html="Kon.data.content"></div>
-            </v-card-text>
-        </v-card>
+    <div v-else-if="error">
+        <p>加载失败，请稍后再试。</p>
     </div>
+    <v-card v-else>
+        <v-card-title>{{ announcement.title }}</v-card-title>
+        <v-card-subtitle>{{ announcement.subTitle }}</v-card-subtitle>
+        <v-card-text v-html="announcement.content"></v-card-text>
+    </v-card>
 </template>
 
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
-interface KonDataType {
+interface AnnouncementType {
     title: string;
     subTitle: string;
     content: string;
 }
 
-interface KonResponse {
+interface ApiResponse {
     code: string;
-    data: KonDataType;
+    data: AnnouncementType;
 }
 
-const Kon = ref<KonResponse>({
-    code: '200',
-    data: {
-        title: '',
-        subTitle: '',
-        content: '',
-    },
+const announcement = ref<AnnouncementType>({
+    title: '',
+    subTitle: '',
+    content: ''
 });
 
 const isLoading = ref(true);
+const error = ref(false);
 
 onMounted(async () => {
     try {
         const response = await axios.get('https://api-v2.x-x.work/web/kon/announcement');
         if (response.data.code === '200') {
-            Kon.value = response.data;
+            announcement.value = response.data.data;
         } else {
             console.error('Failed to fetch announcement:', response.data);
+            error.value = true;
         }
-    } catch (error) {
-        console.error('Error fetching announcement:', error);
+    } catch (err) {
+        console.error('Error fetching announcement:', err);
+        error.value = true;
     } finally {
         isLoading.value = false;
     }
