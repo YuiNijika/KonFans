@@ -9,7 +9,9 @@ declare module 'vue' {
   export interface GlobalComponents {
     Announcement: typeof import('./src/components/Announcement.vue')['default']
     Drawer: typeof import('./src/components/Drawer.vue')['default']
+    Footer: typeof import('./src/components/Footer.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    WallpaperGrid: typeof import('./src/components/WallpaperGrid.vue')['default']
   }
 }
