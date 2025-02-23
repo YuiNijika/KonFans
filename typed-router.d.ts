@@ -23,7 +23,6 @@ declare module 'vue-router/auto-routes' {
     '/Picture/': RouteRecordInfo<'/Picture/', '/Picture', Record<never, never>, Record<never, never>>,
     '/Picture/AlphaCoders': RouteRecordInfo<'/Picture/AlphaCoders', '/Picture/AlphaCoders', Record<never, never>, Record<never, never>>,
     '/Picture/Desktop': RouteRecordInfo<'/Picture/Desktop', '/Picture/Desktop', Record<never, never>, Record<never, never>>,
-    '/Picture/Love': RouteRecordInfo<'/Picture/Love', '/Picture/Love', Record<never, never>, Record<never, never>>,
     '/Picture/Meme': RouteRecordInfo<'/Picture/Meme', '/Picture/Meme', Record<never, never>, Record<never, never>>,
     '/Picture/Mobile': RouteRecordInfo<'/Picture/Mobile', '/Picture/Mobile', Record<never, never>, Record<never, never>>,
     '/Picture/Space': RouteRecordInfo<'/Picture/Space', '/Picture/Space', Record<never, never>, Record<never, never>>,

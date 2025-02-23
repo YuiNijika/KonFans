@@ -10,6 +10,7 @@ declare module 'vue' {
     Announcement: typeof import('./src/components/Announcement.vue')['default']
     Drawer: typeof import('./src/components/Drawer.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
+    Love: typeof import('./src/components/Love.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     WallpaperGrid: typeof import('./src/components/WallpaperGrid.vue')['default']

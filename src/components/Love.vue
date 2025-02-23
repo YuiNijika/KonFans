@@ -1,9 +1,9 @@
 <template>
-    <div v-if="isLoading" class="loading-text">
-        加载中...
+    <div v-if="isLoading" style="text-align: center;">
+        <v-skeleton-loader type="image, article"></v-skeleton-loader>
     </div>
     <div v-else-if="error">
-        <p>加载失败，请稍后再试。</p>
+        <p>同人作品加载失败，请加群反馈。</p>
     </div>
     <div v-else>
         <v-row>
@@ -56,12 +56,3 @@ onMounted(async () => {
     }
 });
 </script>
-
-<style scoped>
-.loading-text {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 18px;
-    color: #666;
-}
-</style>
