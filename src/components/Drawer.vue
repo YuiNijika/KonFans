@@ -1,7 +1,7 @@
 <template>
   <v-navigation-drawer v-model="drawer" :location="$vuetify.display.mobile ? 'left' : undefined">
     <v-list>
-      <v-list-item prepend-avatar="https://q.qlogo.cn/g?b=qq&nk=1778273540&s=100" subtitle="Tomori@miomoe.cn"
+      <v-list-item prepend-avatar="https://q.qlogo.cn/g?b=qq&nk=1778273540&s=640" subtitle="Tomori@miomoe.cn"
         title="鼠子ゞ"></v-list-item>
     </v-list>
 
@@ -56,7 +56,7 @@
     </v-app-bar-title>
 
     <template v-slot:append>
-      <a href="https://github.com/ShuShuicu/KON-WebSite-V2" target="_blank"><v-btn icon="mdi-star"></v-btn></a>
+      <a href="https://github.com/ShuShuicu/KonFans" target="_blank"><v-btn icon="mdi-star"></v-btn></a>
       <v-tooltip activator="parent" location="start">点个Star叭!</v-tooltip>
     </template>
   </v-app-bar>
