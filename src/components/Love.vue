@@ -10,9 +10,7 @@
             <v-col v-for="(item, index) in konData" :key="index" cols="12" sm="6" md="3">
                 <v-card :href="item.link" target="_blank" rel="noopener" append-icon="mdi-open-in-new"
                     :subtitle="item.subTitle" :title="item.title">
-                    <v-card-text>
-                        {{ item.content }}
-                    </v-card-text>
+                    <v-tooltip activator="parent" location="top">{{ item.content }}</v-tooltip>
                 </v-card>
             </v-col>
         </v-row>

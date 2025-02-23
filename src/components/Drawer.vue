@@ -12,7 +12,6 @@
       <router-link to="/">
         <v-list-item prepend-icon="mdi-home" title="首页" value="home" />
       </router-link>
-      <v-divider></v-divider>
       <router-link v-for="(item, index) in navItems" :key="index" :to="item.to">
         <v-list-item :prepend-icon="item.icon" :title="item.title" :value="item.value" />
       </router-link>
@@ -70,7 +69,6 @@ export default {
     return {
       drawer: null,
       navItems: [
-        { icon: 'mdi-alpha-a-circle-outline', title: '全部壁纸', value: 'All', to: '/Picture' },
         { icon: 'mdi-laptop', title: '电脑壁纸', value: 'pcWallpaper', to: '/Picture/Desktop' },
         { icon: 'mdi-cellphone', title: '手机壁纸', value: 'mobileWallpaper', to: '/Picture/Mobile' },
         { icon: 'mdi-panorama-variant-outline', title: '轻音图网', value: 'spaceWallpaper', to: '/Picture/Space' },

@@ -1,3 +1,3 @@
 <template>
-    <WallpaperGrid clas="All" :pageSize="100" />
+    <WallpaperGrid clas="All" :pageSize="50" />
 </template>
