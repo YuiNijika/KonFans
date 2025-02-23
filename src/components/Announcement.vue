@@ -5,7 +5,7 @@
     <div v-else-if="error">
         <p>加载失败，请稍后再试。</p>
     </div>
-    <v-card v-else>
+    <v-card v-else style="margin-bottom: 20px;">
         <v-card-title>{{ announcement.title }}</v-card-title>
         <v-card-subtitle>{{ announcement.subTitle }}</v-card-subtitle>
         <v-card-text v-html="announcement.content"></v-card-text>

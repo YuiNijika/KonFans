@@ -1,5 +1,5 @@
 <template>
-    <v-card class="Wallpaper" flat style="margin-top: 20px;">
+    <v-card class="Wallpaper" flat>
         <div v-for="(wallpaper, index) in displayedWallpapers" :key="`wallpaper-${index}`" class="Wallpaper-item">
             <img v-lazy="wallpaper.Url" :alt="wallpaper.File" @load="handleImageLoad" class="wallpaper-image" />
         </div>

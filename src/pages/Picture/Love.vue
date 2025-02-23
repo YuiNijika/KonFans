@@ -6,7 +6,7 @@
         <p>加载失败，请稍后再试。</p>
     </div>
     <div v-else>
-        <v-row style="margin-top: 10px;">
+        <v-row>
             <v-col v-for="(item, index) in konData" :key="index" cols="12" sm="6" md="3">
                 <v-card :href="item.link" target="_blank" rel="noopener" append-icon="mdi-open-in-new"
                     :subtitle="item.subTitle" :title="item.title">
