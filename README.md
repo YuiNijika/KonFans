@@ -47,31 +47,43 @@ https://api-v2.x-x.work/web/kon/wallpaper?All&number=5&page=1
 {
     "data": [
         {
-            "File": "111713.jpg",
-            "Url": "https://ss.bscstorage.com/wpteam/Wallpaper/KON/111713.jpg"
+            "File": "745330.png",
+            "Url": "https://cdn.jsdelivr.net/gh/KonFans/Picture/PC/745330.png",
+            "Size": 3229544,
+            "Modified": 1740173584
         },
         {
-            "File": "113388.jpg",
-            "Url": "https://ss.bscstorage.com/wpteam/Wallpaper/KON/113388.jpg"
+            "File": "332297.jpg",
+            "Url": "https://cdn.jsdelivr.net/gh/KonFans/Picture/PC/332297.jpg",
+            "Size": 346204,
+            "Modified": 1740173580
         },
         {
-            "File": "120611.jpg",
-            "Url": "https://ss.bscstorage.com/wpteam/Wallpaper/KON/120611.jpg"
+            "File": "20241128171425.jpeg",
+            "Url": "https://cdn.jsdelivr.net/gh/KonFans/Picture/PC/20241128171425.jpeg",
+            "Size": 265854,
+            "Modified": 1740173578
         },
         {
-            "File": "120613.jpg",
-            "Url": "https://ss.bscstorage.com/wpteam/Wallpaper/KON/120613.jpg"
+            "File": "127912.jpg",
+            "Url": "https://cdn.jsdelivr.net/gh/KonFans/Picture/PC/127912.jpg",
+            "Size": 233155,
+            "Modified": 1740173578
         },
         {
-            "File": "127889.jpg",
-            "Url": "https://ss.bscstorage.com/wpteam/Wallpaper/KON/127889.jpg"
+            "File": "392427.jpg",
+            "Url": "https://cdn.jsdelivr.net/gh/KonFans/Picture/PC/392427.jpg",
+            "Size": 153270,
+            "Modified": 1740173580
         }
     ],
     "meta": {
         "current_page": 1,
         "per_page": 5,
-        "total_items": 5,
-        "total_pages": 1
+        "total_items": 2638,
+        "total_pages": 528,
+        "directory": "All",
+        "scan_mode": "recursive"
     }
 }
 ```
