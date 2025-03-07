@@ -71,7 +71,6 @@ export default {
         { icon: 'mdi-panorama-variant-outline', title: '轻音图网', value: 'spaceWallpaper', to: '/Picture/Space' },
         { icon: 'mdi-panorama-variant', title: '轻音表情包', value: 'meme', to: '/Picture/Meme' },
         { icon: 'mdi-heart-flash', title: 'AlphaCoders', value: 'alphacoders', to: '/Picture/AlphaCoders' },
-        { icon: 'mdi-heart-flash', title: 'AlphaCoders', value: 'alphacoders', to: '/Picture/AlphaCoders' }
       ],
       linkNavItems: [
         { icon: 'mdi-api', title: 'OpenAPI', value: 'api', href: 'https://blog.miomoe.cn/article/33' },
