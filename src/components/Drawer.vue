@@ -12,22 +12,16 @@
       <router-link to="/">
         <v-list-item prepend-icon="mdi-home" title="首页" value="home" />
       </router-link>
-      <router-link v-for="(item, index) in navItems" :key="index" :to="item.to">
+      <router-link v-for="(item, index) in routerNavItems" :key="index" :to="item.to">
         <v-list-item :prepend-icon="item.icon" :title="item.title" :value="item.value" />
       </router-link>
       <v-divider></v-divider>
-      <a href="https://blog.miomoe.cn/article/33" target="_blank">
-        <v-list-item prepend-icon="mdi-api" title="OpenAPI" value="api" />
+      <a v-for="(item, index) in linkNavItems" :key="index" :href="item.href" target="_blank">
+        <v-list-item :prepend-icon="item.icon" :title="item.title" :value="item.value" />
       </a>
-      <a href="https://space.bilibili.com/435502585" target="_blank">
-        <v-list-item prepend-icon="mdi-account" title="哔哩哔哩" value="bilibili" />
-      </a>
-      <a href="https://cloud.miomoe.cn/s/BODFo" target="_blank">
-        <v-list-item prepend-icon="mdi-video" title="观看全集" value="playerKon" />
-      </a>
-      <a href="https://messages.miomoe.cn/" target="_blank">
-        <v-list-item prepend-icon="mdi-comment-multiple" title="前往留言" value="comments" />
-      </a>
+      <router-link to="/Messages">
+        <v-list-item prepend-icon="mdi-comment-multiple" title="前往留言" value="messages" />
+      </router-link>
     </v-list>
     <template v-slot:append>
       <div class="pa-2">
@@ -64,16 +58,25 @@
 </template>
 
 <script>
+import router from '@/router';
+import { ro } from 'vuetify/locale';
+
 export default {
   data() {
     return {
       drawer: null,
-      navItems: [
+      routerNavItems: [
         { icon: 'mdi-laptop', title: '电脑壁纸', value: 'pcWallpaper', to: '/Picture/Desktop' },
         { icon: 'mdi-cellphone', title: '手机壁纸', value: 'mobileWallpaper', to: '/Picture/Mobile' },
         { icon: 'mdi-panorama-variant-outline', title: '轻音图网', value: 'spaceWallpaper', to: '/Picture/Space' },
         { icon: 'mdi-panorama-variant', title: '轻音表情包', value: 'meme', to: '/Picture/Meme' },
+        { icon: 'mdi-heart-flash', title: 'AlphaCoders', value: 'alphacoders', to: '/Picture/AlphaCoders' },
         { icon: 'mdi-heart-flash', title: 'AlphaCoders', value: 'alphacoders', to: '/Picture/AlphaCoders' }
+      ],
+      linkNavItems: [
+        { icon: 'mdi-api', title: 'OpenAPI', value: 'api', href: 'https://blog.miomoe.cn/article/33' },
+        { icon: 'mdi-account', title: '哔哩哔哩', value: 'bilibili', href: 'https://space.bilibili.com/435502585' },
+        { icon: 'mdi-video', title: '观看全集', value: 'playerKon', href: 'https://search.bilibili.com/bangumi?keyword=%E8%BD%BB%E9%9F%B3%E5%B0%91%E5%A5%B3&KonFans=www.miomoe.cn' },
       ],
     }
   },
