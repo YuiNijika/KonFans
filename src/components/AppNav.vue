@@ -17,7 +17,7 @@ const subItems = [
         <router-link v-for="item in items" :key="item.text" :to="item.to">
             <v-btn :prepend-icon="item.icon" variant="text">{{ item.text }}</v-btn>
         </router-link>
-        <v-menu open-on-hover>
+        <v-menu>
             <template v-slot:activator="{ props }">
                 <v-btn v-bind="props" prepend-icon="mdi-panorama-variant-outline" variant="text">
                     全部壁纸
