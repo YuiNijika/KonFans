@@ -11,7 +11,5 @@ QQ交流群`574888080`
 ## 运行&构建
 
 - npm i
-- npm i -D vuetify vite-plugin-vuetify
-- npm i @mdi/font
 - npm run dev
 - npm run build
