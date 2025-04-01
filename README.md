@@ -1,89 +1,81 @@
-# KON!
+# Vuetify (Default)
 
-> 这是我写的第一个 Vue3 项目的重构版，技术较差大佬勿喷！
+This is the official scaffolding tool for Vuetify, designed to give you a head start in building your new Vuetify application. It sets up a base template with all the necessary configurations and standard directory structure, enabling you to begin development without the hassle of setting up the project from scratch.
 
-欢迎 fork 提交代码大家一起努力罢！
-> 特别感谢[@小宏XeLa](https://github.com/xiaohong2022)
+## ❗️ Important Links
 
-QQ交流群`574888080`  
-哔哩哔哩[@Tomoriゞ](https://space.bilibili.com/435502585)
+- 📄 [Docs](https://vuetifyjs.com/)
+- 🚨 [Issues](https://issues.vuetifyjs.com/)
+- 🏬 [Store](https://store.vuetifyjs.com/)
+- 🎮 [Playground](https://play.vuetifyjs.com/)
+- 💬 [Discord](https://community.vuetifyjs.com)
 
-## 运行&构建
+## 💿 Install
 
-- npm i
-- npm i -D vuetify vite-plugin-vuetify
-- npm i @mdi/font
-- npm run dev
-- npm run build
+Set up your project using your preferred package manager. Use the corresponding command to install the dependencies:
 
-### OpenAPI
+| Package Manager                                                | Command        |
+|---------------------------------------------------------------|----------------|
+| [yarn](https://yarnpkg.com/getting-started)                   | `yarn install` |
+| [npm](https://docs.npmjs.com/cli/v7/commands/npm-install)     | `npm install`  |
+| [pnpm](https://pnpm.io/installation)                          | `pnpm install` |
+| [bun](https://bun.sh/#getting-started)                        | `bun install`  |
 
-```html
-https://api-v2.x-x.work/web/kon/wallpaper
+After completing the installation, your environment is ready for Vuetify development.
+
+## ✨ Features
+
+- 🖼️ **Optimized Front-End Stack**: Leverage the latest Vue 3 and Vuetify 3 for a modern, reactive UI development experience. [Vue 3](https://v3.vuejs.org/) | [Vuetify 3](https://vuetifyjs.com/en/)
+- 🗃️ **State Management**: Integrated with [Pinia](https://pinia.vuejs.org/), the intuitive, modular state management solution for Vue.
+- 🚦 **Routing and Layouts**: Utilizes Vue Router for SPA navigation and vite-plugin-vue-layouts for organizing Vue file layouts. [Vue Router](https://router.vuejs.org/) | [vite-plugin-vue-layouts](https://github.com/JohnCampionJr/vite-plugin-vue-layouts)
+- 💻 **Enhanced Development Experience**: Benefit from TypeScript's static type checking and the ESLint plugin suite for Vue, ensuring code quality and consistency. [TypeScript](https://www.typescriptlang.org/) | [ESLint Plugin Vue](https://eslint.vuejs.org/)
+- ⚡ **Next-Gen Tooling**: Powered by Vite, experience fast cold starts and instant HMR (Hot Module Replacement). [Vite](https://vitejs.dev/)
+- 🧩 **Automated Component Importing**: Streamline your workflow with unplugin-vue-components, automatically importing components as you use them. [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components)
+- 🛠️ **Strongly-Typed Vue**: Use vue-tsc for type-checking your Vue components, and enjoy a robust development experience. [vue-tsc](https://github.com/johnsoncodehk/volar/tree/master/packages/vue-tsc)
+
+These features are curated to provide a seamless development experience from setup to deployment, ensuring that your Vuetify application is both powerful and maintainable.
+
+## 💡 Usage
+
+This section covers how to start the development server and build your project for production.
+
+### Starting the Development Server
+
+To start the development server with hot-reload, run the following command. The server will be accessible at [http://localhost:3000](http://localhost:3000):
+
+```bash
+yarn dev
 ```
-### 参数
-| 返回格式 | 调用参数  |  调用说明 |
-| ------------ | ------------ | ------------ |
-|  Json |  All | 返回全部  |
-| Json  | PC  |  返回电脑壁纸 |
-|  Json | Mobile  | 返回手机壁纸  |
-|  Json |  Space |  返回轻音图网 |
-|  Json |  Meme | 返回表情包  |
-| Json | AlphaCoders | 返回AlphaCoders的壁纸 |
 
-#### 数量控制
+(Repeat for npm, pnpm, and bun with respective commands.)
 
-| 调用参数  | 调用说明  |
-| ------------ | ------------ |
-|  number |  数量 |
-|  page |  页码 |
+> Add NODE_OPTIONS='--no-warnings' to suppress the JSON import warnings that happen as part of the Vuetify import mapping. If you are on Node [v21.3.0](https://nodejs.org/en/blog/release/v21.3.0) or higher, you can change this to NODE_OPTIONS='--disable-warning=5401'. If you don't mind the warning, you can remove this from your package.json dev script.
 
-## 示例
-```html
-https://api-v2.x-x.work/web/kon/wallpaper?All&number=5&page=1
+### Building for Production
+
+To build your project for production, use:
+
+```bash
+yarn build
 ```
-### 返回信息
-```json
-{
-    "data": [
-        {
-            "File": "745330.png",
-            "Url": "https://cdn.jsdelivr.net/gh/KonFans/Picture/PC/745330.png",
-            "Size": 3229544,
-            "Modified": 1740173584
-        },
-        {
-            "File": "332297.jpg",
-            "Url": "https://cdn.jsdelivr.net/gh/KonFans/Picture/PC/332297.jpg",
-            "Size": 346204,
-            "Modified": 1740173580
-        },
-        {
-            "File": "20241128171425.jpeg",
-            "Url": "https://cdn.jsdelivr.net/gh/KonFans/Picture/PC/20241128171425.jpeg",
-            "Size": 265854,
-            "Modified": 1740173578
-        },
-        {
-            "File": "127912.jpg",
-            "Url": "https://cdn.jsdelivr.net/gh/KonFans/Picture/PC/127912.jpg",
-            "Size": 233155,
-            "Modified": 1740173578
-        },
-        {
-            "File": "392427.jpg",
-            "Url": "https://cdn.jsdelivr.net/gh/KonFans/Picture/PC/392427.jpg",
-            "Size": 153270,
-            "Modified": 1740173580
-        }
-    ],
-    "meta": {
-        "current_page": 1,
-        "per_page": 5,
-        "total_items": 2638,
-        "total_pages": 528,
-        "directory": "All",
-        "scan_mode": "recursive"
-    }
-}
-```
+
+(Repeat for npm, pnpm, and bun with respective commands.)
+
+Once the build process is completed, your application will be ready for deployment in a production environment.
+
+## 💪 Support Vuetify Development
+
+This project is built with [Vuetify](https://vuetifyjs.com/en/), a UI Library with a comprehensive collection of Vue components. Vuetify is an MIT licensed Open Source project that has been made possible due to the generous contributions by our [sponsors and backers](https://vuetifyjs.com/introduction/sponsors-and-backers/). If you are interested in supporting this project, please consider:
+
+- [Requesting Enterprise Support](https://support.vuetifyjs.com/)
+- [Sponsoring John on Github](https://github.com/users/johnleider/sponsorship)
+- [Sponsoring Kael on Github](https://github.com/users/kaelwd/sponsorship)
+- [Supporting the team on Open Collective](https://opencollective.com/vuetify)
+- [Becoming a sponsor on Patreon](https://www.patreon.com/vuetify)
+- [Becoming a subscriber on Tidelift](https://tidelift.com/subscription/npm/vuetify)
+- [Making a one-time donation with Paypal](https://paypal.me/vuetify)
+
+## 📑 License
+[MIT](http://opensource.org/licenses/MIT)
+
+Copyright (c) 2016-present Vuetify, LLC

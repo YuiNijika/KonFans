@@ -1,6 +1,7 @@
+<script setup>
+  //
+</script>
+
 <template>
-    <Love />
-    <div style="margin-top: 20px;">
-        <WallpaperGrid clas="All" :pageSize="20" />
-    </div>
+  <WallpaperGrid clas="All" :pageSize="20" /> 
 </template>

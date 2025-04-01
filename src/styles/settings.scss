@@ -4,42 +4,37 @@
  * Configures SASS variables and Vuetify overwrites
  */
 
-// https://vuetifyjs.com/features/sass-variables/`
-// @use 'vuetify/settings' with (
-//   $color-pack: false
-// );
-
+// 定义常用变量
+$background-color: rgb(33, 33, 33);
+$logo-size: 30%;
+$transition-duration: 0.2s;
+$grid-gap: 16px;
+$grid-min-width: 200px;
 
 body:after {
     content: " ";
     position: fixed;
     inset: 0;
-    background-color: rgb(33,33,33);
+    background-color: $background-color;
     z-index: 999999;
     background-image: url(/assets/logo.png);
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 30%;
+    background-size: $logo-size;
     animation: fadeOut 2s;
     animation-fill-mode: forwards;
-    -webkit-transition: fadeOut 2s;
     transition: fadeOut 2s;
     pointer-events: none;
 }
 
 @keyframes fadeOut {
-    50% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-    }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 body {
     display: block;
-    margin: 0px;
+    margin: 0;
 }
 
 a, a:hover {
@@ -47,51 +42,49 @@ a, a:hover {
     text-decoration: unset;
 }
 
-body .view-image {
-    z-index: 114514;
-}
-
-body .Wallpaper {
+.Wallpaper {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax($grid-min-width, 1fr));
+    gap: $grid-gap;
     grid-auto-flow: dense;
 }
 
-body .Wallpaper-item {
+.Wallpaper-item {
     width: 30%;
     border-radius: 8px;
     overflow: hidden;
     position: relative;
-    transition: transform 0.2s;
+    transition: transform $transition-duration;
     margin-bottom: 10px;
-}
 
-body .Wallpaper-item:hover {
-    transform: scale(1.05);
-}
+    &:hover {
+        transform: scale(1.05);
+    }
 
-body .Wallpaper-item img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 8px;
+    img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 8px;
+    }
 }
 
 @media (max-width: 1023px) {
-    body .Wallpaper-item {
+    .Wallpaper-item {
         width: 33.333%;
-    }
-    body .Wallpaper-item img {
-        width: 80%;
+
+        img {
+            width: 80%;
+        }
     }
 }
 
 @media (max-width: 767px) {
-    body .Wallpaper-item {
+    .Wallpaper-item {
         width: 45%;
-    }
-    body .Wallpaper-item img {
-        width: 100%;
+
+        img {
+            width: 100%;
+        }
     }
 }

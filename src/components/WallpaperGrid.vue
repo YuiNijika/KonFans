@@ -1,14 +1,3 @@
-<template>
-    <v-card class="Wallpaper" flat>
-        <div v-for="(wallpaper, index) in displayedWallpapers" :key="`wallpaper-${index}`" class="Wallpaper-item">
-            <img v-lazy="wallpaper.Url" :alt="wallpaper.File" @load="handleImageLoad" class="wallpaper-image" />
-        </div>
-    </v-card>
-    <div v-if="hasMore" style="text-align:center;margin-top: 10px;">
-        <v-btn color="primary" @click="loadMore" :loading="isLoading">加载更多</v-btn>
-    </div>
-</template>
-
 <script setup>
 import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue';
 import axios from 'axios';
@@ -38,7 +27,7 @@ async function fetchWallpapers(page) {
         const response = await axios.get(
             `https://api-v2.x-x.work/web/kon/wallpaper?${props.clas}&number=${props.pageSize}&page=${page}`
         );
-        return response.data.data; // 根据你的API结构调整这里
+        return response.data.data;
     } catch (error) {
         console.error('Error fetching wallpapers:', error);
         return [];
@@ -127,3 +116,17 @@ onBeforeUnmount(() => {
     iso?.destroy();
 });
 </script>
+
+<template>
+    <v-card class="Wallpaper" flat>
+        <div v-for="(wallpaper, index) in displayedWallpapers" :key="`wallpaper-${index}`" class="Wallpaper-item">
+            <img v-lazy="wallpaper.Url" :alt="wallpaper.File" @load="handleImageLoad" class="wallpaper-image" />
+        </div>
+    </v-card>
+    <div v-if="isLoading">
+        <v-skeleton-loader type="card"></v-skeleton-loader>
+    </div>
+    <div v-else-if="hasMore" style="text-align:center;margin: 10px 0px 10px 0px;">
+        <v-btn color="primary" @click="loadMore" :loading="isLoading">加载更多</v-btn>
+    </div>
+</template>
