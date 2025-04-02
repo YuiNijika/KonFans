@@ -13,3 +13,5 @@ QQ交流群`574888080`
 - npm i
 - npm run dev
 - npm run build
+
+![KonFans](https://starchart.cc/ShuShuicu/KonFans.svg?variant=adaptive)
