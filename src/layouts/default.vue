@@ -8,7 +8,6 @@
     <v-container>
       <AppNav />
       <AppAnnouncement />
-      <AppLove />
       <v-card style="margin-top: 20px;">
         <router-view />
       </v-card>
