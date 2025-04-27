@@ -1,25 +1,31 @@
-import './assets/main.css'
+/**
+ * main.ts
+ *
+ * Bootstraps Vuetify and other plugins then mounts the App`
+ */
 
-import { createApp } from 'vue'
+// Plugins
+import { registerPlugins } from '@/plugins'
+
+// Components
 import App from './App.vue'
-import router from './router'
 
-import Antd from 'ant-design-vue';
-import 'ant-design-vue/dist/reset.css';
+// Composables
+import { createApp } from 'vue'
 
+// 引入 vue-lazyload
 import VueLazyload from 'vue-lazyload';
-import VueEasyLightbox from 'vue-easy-lightbox'
 
 const app = createApp(App)
 
-app.use(router)
-app.use(Antd)
-app.use(VueEasyLightbox)
+// 使用 vue-lazyload
 app.use(VueLazyload, {
     preLoad: 1.3,
     error: '/assets/error.jpg', // 错误图片路径
     loading: '/assets/load.gif', // 加载中图片路径
     attempt: 1
 });
+
+registerPlugins(app)
 
 app.mount('#app')
