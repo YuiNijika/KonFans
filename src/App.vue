@@ -31,7 +31,6 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-
 main {
   width: 85%;
   margin: 0 auto;
