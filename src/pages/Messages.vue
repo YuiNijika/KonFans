@@ -64,41 +64,43 @@ fetchComments();
 </script>
 
 <template>
-    <v-card style="margin-bottom: 20px;">
+    <a-card size="small" :bordered="false" style="margin-bottom: 20px;">
         <iframe ref="iframeRef" :src="iframeSrc" height="280px" style="width: 100%; border: none;"></iframe>
-    </v-card>
+    </a-card>
 
-    <v-card v-for="comment in comments" :key="comment.coid" class="mx-auto text-white mb-4">
-        <v-card-text class="text-h5 py-2">
-            "{{ comment.text }}"
-        </v-card-text>
+    <a-card size="small" :bordered="false" v-for="comment in comments" :key="comment.coid" style="margin-bottom: 10px;">
+    
+    <a-comment>
+        <template #avatar>
+            <a-avatar :src="`https://cravatar.cn/avatar/${comment.mailHash}`" />
+        </template>
+        <template #author>
+            {{ comment.author }}
+        </template>
+        <template #datetime>
+            {{ new Date(comment.created * 1000).toLocaleString() }}
+        </template>
+        <template #content>
+            <p>{{ comment.text }}</p>
+        </template>
+    </a-comment>
+</a-card>
 
-        <v-card-actions>
-            <v-list-item class="w-100">
-                <template v-slot:prepend>
-                    <v-avatar color="grey-darken-3" :image="`https://cravatar.cn/avatar/${comment.mailHash}`" />
-                </template>
-
-                <v-list-item-title>{{ comment.author }}</v-list-item-title>
-
-                <v-list-item-subtitle>
-                    {{ new Date(comment.created * 1000).toLocaleString() }}
-                </v-list-item-subtitle>
-            </v-list-item>
-        </v-card-actions>
-    </v-card>
-
-    <div v-if="currentPage < totalPages" style="text-align:center;margin: 10px 0px 10px 0px;">
-        <v-btn color="primary" @click="loadMore" :disabled="loading">
+    <div v-if="currentPage < totalPages" style="text-align:center;margin-top: 20px;">
+        <a-button type="primary" @click="loadMore" :loading="loading">
             {{ loading ? '加载中...' : '加载更多' }}
-        </v-btn>
+        </a-button>
     </div>
 
-    <div v-else-if="loading">
-        <v-skeleton-loader type="list-item-avatar"></v-skeleton-loader>
-    </div>
+    <a-card size="small" :bordered="false" v-else-if="loading">
+        <a-skeleton active :paragraph="{ rows: 4 }" />
+    </a-card>
 
-    <div v-else class="text-center mt-6">
+    <div v-else styule="text-align:center;">
         没有更多评论了
     </div>
 </template>
+
+<style scoped>
+
+</style>
