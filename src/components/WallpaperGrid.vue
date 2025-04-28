@@ -1,265 +1,191 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount, nextTick, watch } from 'vue'
-import axios from 'axios'
-import Isotope from 'isotope-layout'
-import imagesLoaded from 'imagesloaded'
-import VueEasyLightbox from 'vue-easy-lightbox'
+import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue';
+import axios from 'axios';
+import Isotope from 'isotope-layout';
+import imagesLoaded from 'imagesloaded';
+
+import { Image as AImage, Spin as ASpin, Pagination as APagination, Skeleton as ASkeleton, Card as ACard } from 'ant-design-vue';
 
 const props = defineProps({
-    clas: {
-        type: String,
-        default: 'All'
-    },
-    pageSize: {
-        type: Number,
-        default: 20
-    }
-})
+    clas: { type: String, default: 'All' },
+    pageSize: { type: Number, default: 20 }
+});
 
-// 数据状态
-const displayedWallpapers = ref([])
-const currentPage = ref(1)
-const isLoading = ref(false)
-const hasMore = ref(true)
-const gridElement = ref(null)
-let iso = null
+// 响应式状态
+const displayedWallpapers = ref([]);
+const meta = ref({ current_page: 1, per_page: props.pageSize, total_items: 0, total_pages: 0 });
+let iso = null;
+const isLoading = ref(false);
+const gridElement = ref(null);
+let layoutRAF = null;
 
-// 灯箱状态
-const lightboxVisible = ref(false)
-const lightboxIndex = ref(0)
-const lightboxImages = ref([])
+// 使用 requestAnimationFrame 节流
+function safeLayout() {
+    if (layoutRAF) return;
+    layoutRAF = requestAnimationFrame(() => {
+        iso && iso.layout();
+        layoutRAF = null;
+    });
+}
 
-// 获取壁纸数据
-async function fetchWallpapers(page) {
+// 获取数据
+async function fetchWallpapers(page, perPage) {
+    isLoading.value = true;
     try {
         const response = await axios.get(
-            `https://api-v2.x-x.work/web/kon/wallpaper?${props.clas}&number=${props.pageSize}&page=${page}`
-        )
-        return response.data.data
+            `https://api-v2.x-x.work/web/kon/wallpaper?${props.clas}&number=${perPage}&page=${page}`
+        );
+        const { data, meta: m } = response.data;
+        return { data, meta: m };
     } catch (error) {
-        console.error('Error fetching wallpapers:', error)
-        return []
-    }
-}
-
-// 加载更多数据
-async function loadMore() {
-    if (!hasMore.value || isLoading.value) return
-
-    isLoading.value = true
-    currentPage.value++
-
-    try {
-        const newData = await fetchWallpapers(currentPage.value)
-
-        if (newData.length > 0) {
-            displayedWallpapers.value = [...displayedWallpapers.value, ...newData]
-            await nextTick()
-            updateLayout(newData.length)
-            updateLightboxImages()
-        }
-
-        hasMore.value = newData.length === props.pageSize
+        console.error('Error fetching wallpapers:', error);
+        return { data: [], meta: { current_page: page, per_page: perPage, total_items: 0, total_pages: 0 } };
     } finally {
-        isLoading.value = false
+        isLoading.value = false;
     }
 }
 
-// 更新灯箱图片数据
-function updateLightboxImages() {
-    lightboxImages.value = displayedWallpapers.value.map(w => ({
-        src: w.HDUrl || w.Url
-        // 已移除 title 显示
-    }))
+// 图片加载时布局
+function onImageLoad() {
+    safeLayout();
 }
 
-// 显示灯箱
-function showLightbox(index) {
-    lightboxIndex.value = index
-    lightboxVisible.value = true
-}
-
-// 更新Isotope布局
+// 更新布局
 function updateLayout(newItemsCount) {
-    if (!iso) return
-
-    imagesLoaded(gridElement.value, () => {
-        const items = gridElement.value.querySelectorAll('.Wallpaper-item')
-        iso.appended(Array.from(items).slice(-newItemsCount))
-        iso.layout()
-    })
+    if (!iso) return;
+    const items = gridElement.value.querySelectorAll('.Wallpaper-item');
+    const newItems = Array.from(items).slice(-newItemsCount);
+    iso.appended(newItems);
+    safeLayout();
+    imagesLoaded(newItems, () => {
+        iso.shuffle();
+        safeLayout();
+    });
 }
 
-// 图片加载完成处理
-function handleImageLoad() {
-    nextTick(() => {
-        if (iso) {
-            imagesLoaded(gridElement.value, () => {
-                iso.layout()
-            })
-        }
-    })
-}
-
-// 初始化Isotope
+// 初始化 Isotope
 function initIsotope() {
-    if (!gridElement.value) return
-
+    if (!gridElement.value) return;
     iso = new Isotope(gridElement.value, {
         itemSelector: '.Wallpaper-item',
-        masonry: {
-            columnWidth: '.Wallpaper-sizer',
-            gutter: 15
-        },
+        masonry: { columnWidth: '.Wallpaper-sizer', gutter: 15 },
         percentPosition: true,
         transitionDuration: '0.4s'
-    })
-
-    imagesLoaded(gridElement.value).on('always', () => {
-        iso.layout()
-        gridElement.value.style.opacity = 1
-    })
+    });
+    imagesLoaded(gridElement.value, () => {
+        iso.shuffle();
+        safeLayout();
+        gridElement.value.style.opacity = 1;
+    });
 }
 
-// 洗牌功能
-function shuffleItems() {
-    if (!iso) return
-
-    // 随机排序数组
-    const shuffled = [...displayedWallpapers.value]
-        .map(value => ({ value, sort: Math.random() }))
-        .sort((a, b) => a.sort - b.sort)
-        .map(({ value }) => value)
-
-    displayedWallpapers.value = shuffled
-
-    nextTick(() => {
-        iso.layout()
-    })
+// 加载指定页
+async function loadPage(page, perPage) {
+    const { data, meta: m } = await fetchWallpapers(page, perPage);
+    displayedWallpapers.value = data;
+    meta.value = m;
+    await nextTick();
+    // 重置并重新初始化布局
+    iso?.destroy();
+    initIsotope();
 }
 
-// 初始加载
-onMounted(async () => {
-    isLoading.value = true
-    try {
-        const initialData = await fetchWallpapers(1)
-        displayedWallpapers.value = initialData
-        hasMore.value = initialData.length === props.pageSize
-        updateLightboxImages()
+// 分页变更
+function handlePageChange(page, pageSize) {
+    loadPage(page, pageSize);
+}
 
-        await nextTick()
-        initIsotope()
-    } finally {
-        isLoading.value = false
-    }
-})
+function handlePageSizeChange(page, pageSize) {
+    loadPage(1, pageSize);
+}
 
-// 数据变化时更新灯箱图片
-watch(displayedWallpapers, () => {
-    updateLightboxImages()
-})
+onMounted(() => {
+    loadPage(meta.value.current_page, meta.value.per_page);
+});
 
 onBeforeUnmount(() => {
-    iso?.destroy()
-})
+    iso?.destroy();
+});
 </script>
 
 <template>
     <a-card size="small" class="card" :bordered="false">
         <div ref="gridElement" class="Wallpaper" style="opacity: 0;">
-            <!-- 隐藏的尺寸参考元素 -->
             <div class="Wallpaper-sizer"></div>
-
-            <div v-for="(wallpaper, index) in displayedWallpapers" :key="`wallpaper-${wallpaper.id || index}`"
-                class="Wallpaper-item">
-                <img v-lazy="wallpaper.Url" :alt="wallpaper.File" @load="handleImageLoad" class="wallpaper-image"
-                    @click="showLightbox(index)" />
-            </div>
+            <a-image-preview-group>
+                <div v-for="(wallpaper, index) in displayedWallpapers" :key="`wallpaper-${index}`"
+                    class="Wallpaper-item">
+                    <a-image :src="wallpaper.Url" lazy @load="onImageLoad">
+                        <template #placeholder>
+                            <div class="image-placeholder">
+                                <a-spin />
+                            </div>
+                        </template>
+                    </a-image>
+                </div>
+            </a-image-preview-group>
         </div>
 
-        <div v-if="isLoading" style="margin-top: 20px;">
-            <a-skeleton active :paragraph="{ rows: 4 }" />
+        <div class="pagination-container">
+            <a-pagination :current="meta.current_page" :page-size="meta.per_page" :total="meta.total_items"
+                :page-size-options="['10', '20', '50', '100']" show-size-changer @change="handlePageChange"
+                @showSizeChange="handlePageSizeChange" />
         </div>
-        <div style="text-align:center;margin: 20px 0 10px;">
-            <a-space>
-                <a-button v-if="hasMore" type="primary" @click="loadMore" :loading="isLoading">加载更多</a-button>
-                <a-button @click="shuffleItems" type="primary" ghost>
-                    <template #icon><icon-refresh /></template>
-                    随机洗牌
-                </a-button>
-            </a-space>
-        </div>
-
-        <!-- vue-easy-lightbox 组件 -->
-        <vue-easy-lightbox :visible="lightboxVisible" :imgs="lightboxImages" :index="lightboxIndex"
-            @hide="lightboxVisible = false" :move-disabled="false" :loop="true" />
     </a-card>
 </template>
 
 <style scoped>
-.card {
-    background-color: rgb(255 255 255 / 50%);
-}
-
 .Wallpaper {
     position: relative;
     transition: opacity 0.3s ease;
-    margin: 0 -8px;
 }
 
 .Wallpaper-sizer {
     position: absolute;
-    width: calc(25% - 26px);
+    width: calc(25% - 15px);
     visibility: hidden;
 }
 
 .Wallpaper-item {
-    margin-bottom: 16px;
-    padding: 0 8px;
-    width: calc(25% - 16px);
-    box-sizing: border-box;
-    transition: transform 0.2s ease;
+    margin-bottom: 15px;
+    width: calc(25% - 15px);
 }
 
-.Wallpaper-item:hover {
-    transform: translateY(-4px);
-}
-
-.wallpaper-image {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    cursor: zoom-in;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    aspect-ratio: 16/9;
-    object-fit: cover;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+.image-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 150px;
     background-color: #f5f5f5;
 }
 
-.wallpaper-image:hover {
-    transform: scale(1.02);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+.pagination-container {
+    text-align: center;
+    margin: 16px 0;
 }
 
 @media (max-width: 1200px) {
+
     .Wallpaper-sizer,
     .Wallpaper-item {
-        width: calc(33.333% - 16px);
+        width: calc(33.333% - 15px);
     }
 }
 
 @media (max-width: 768px) {
+
     .Wallpaper-sizer,
     .Wallpaper-item {
-        width: calc(50% - 16px);
+        width: calc(50% - 15px);
     }
 }
 
 @media (max-width: 480px) {
+
     .Wallpaper-sizer,
     .Wallpaper-item {
-        width: calc(100% - 16px);
+        width: 100%;
     }
 }
 </style>
