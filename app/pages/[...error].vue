@@ -1,7 +1,9 @@
 <script setup>
 useSeoMeta({
   title: '出错啦!',
-  titleTemplate: '%s - 轻音部',
+  titleTemplate: '%s - KonFans(轻音小窝)',
+  description: '出错啦!',
+  keywords: '出错啦!',
 })
 definePageMeta({
   layout: 'custom'

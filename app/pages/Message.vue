@@ -2,6 +2,7 @@
 
 useSeoMeta({
     title: '留言',
+    titleTemplate: '%s - KonFans(轻音小窝)',
     description: '留言板',
     keywords: '留言板'
 });
@@ -105,6 +106,17 @@ const submitComment = async () => {
     }
 };
 
+// 图片懒加载处理
+const initImageLazyLoad = () => {
+    const images = document.querySelectorAll('.avatar img')
+
+    imagesLoaded(images, { background: true }, (instance) => {
+        instance.elements.forEach((img) => {
+            img.style.opacity = 1 // 加载完成后显示图片
+        })
+    })
+}
+
 // 格式化日期
 const formatDate = (dateString) => {
     const options = {
@@ -150,7 +162,8 @@ const fetchComments = async () => {
 
 onMounted(() => {
     fetchComments();
-});
+})
+
 </script>
 
 <template>
@@ -247,13 +260,9 @@ onMounted(() => {
                 <!-- 分页控件 -->
                 <div class="flex justify-center mt-6">
                     <div class="btn-group">
-                        <button 
-                            v-for="page in Math.ceil(pagination.total / pagination.size)" 
-                            :key="page"
-                            @click="handlePageChange(page)"
-                            class="btn"
-                            :class="{ 'btn-active': page === pagination.page }"
-                        >
+                        <button v-for="page in Math.ceil(pagination.total / pagination.size)" :key="page"
+                            @click="handlePageChange(page)" class="btn"
+                            :class="{ 'btn-active': page === pagination.page }">
                             {{ page }}
                         </button>
                     </div>
@@ -275,9 +284,11 @@ onMounted(() => {
 .ml-12 {
     margin-left: 3rem;
 }
+
 .pl-2 {
     padding-left: 0.5rem;
 }
+
 .border-l-2 {
     border-left-width: 2px;
 }

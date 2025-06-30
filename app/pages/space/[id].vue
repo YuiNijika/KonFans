@@ -53,6 +53,7 @@ function formatDate(dateString) {
 // SEO设置
 useSeoMeta({
     title: () => `${member.value?.name || '未知用户'}的个人空间`,
+    titleTemplate: '%s - KonFans(轻音小窝)',
     description: () => member.value?.bio || '轻音部成员个人主页',
     keywords: () => [member.value?.name, '轻音部', '成员', '个人主页'].filter(Boolean).join(', '),
     ogImage: () => member.value?.avatar
@@ -69,7 +70,7 @@ useHead({
 <template>
     <div class="min-h-screen">
         <div class="mx-auto p-4 max-w-4xl">
-            <!-- 加载状态 -->
+
             <div v-if="loadingMember" class="flex justify-center items-center py-12">
                 <div class="flex w-full md:w-120 flex-col gap-6">
                     <div class="flex items-center gap-4">
@@ -87,7 +88,7 @@ useHead({
                 </div>
             </div>
 
-            <!-- 错误状态 -->
+
             <div v-else-if="error" class="alert alert-error shadow-lg mb-6">
                 <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
                     viewBox="0 0 24 24">
@@ -101,7 +102,7 @@ useHead({
                 <button class="btn btn-sm" @click="refreshNuxtData()">重试</button>
             </div>
 
-            <!-- 内容展示 -->
+
             <template v-else-if="member">
                 <div class="card bg-base-100 shadow-xl">
                     <div class="card-body">
@@ -152,7 +153,7 @@ useHead({
                                     <div>
                                         <h3 class="font-bold text-lg">个人简介</h3>
                                         <p class="mt-1 text-gray-700 dark:text-gray-300">
-                                            {{ member.bio || member.name + '还没有留下任何介绍...' }}
+                                            {{ member.bio || '还没有留下任何介绍...' }}
                                         </p>
                                     </div>
 
@@ -185,7 +186,7 @@ useHead({
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
-                                    <span>{{ member.name }}暂未提交个人主页</span>
+                                    <span>暂未提交个人主页链接</span>
                                 </div>
                             </div>
                         </div>
@@ -197,6 +198,12 @@ useHead({
 </template>
 
 <style scoped>
+.text-gray-700 {
+    word-break: break-all;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
 .avatar {
     transition: transform 0.3s ease;
 }
@@ -205,7 +212,6 @@ useHead({
     transform: scale(1.05);
 }
 
-/* 优化移动端显示 */
 @media (max-width: 768px) {
     .card-body {
         padding: 1rem;

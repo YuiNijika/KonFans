@@ -1,6 +1,7 @@
 <script setup>
 useSeoMeta({
     title: '成员列表',
+    titleTemplate: '%s - KonFans(轻音小窝)',
     description: '轻音小窝成员列表',
     keywords: '轻音部, 成员, 列表'
 })
@@ -81,8 +82,15 @@ const submitMemberApplication = async () => {
         return;
     }
 
-    if (memberForm.value.url && !memberForm.value.url.startsWith('http')) {
-        memberForm.value.url = 'https://' + memberForm.value.url;
+    // 处理URL格式
+    if (memberForm.value.url) {
+        // 判断是否为UID
+        if (/^\d+$/.test(memberForm.value.url)) {
+            memberForm.value.url = `https://space.bilibili.com/${memberForm.value.url}`;
+        }
+        else if (!memberForm.value.url.startsWith('http')) {
+            memberForm.value.url = 'https://' + memberForm.value.url;
+        }
     }
 
     submittingMember.value = true;
@@ -160,7 +168,7 @@ onMounted(() => {
 
                     <div class="form-control">
                         <label class="label">
-                            <span class="label-text">性别</span>
+                            <span class="label-text">性别*</span>
                         </label>
                         <select v-model="memberForm.gender" class="select select-bordered w-full">
                             <option value="secret">保密</option>
@@ -181,7 +189,7 @@ onMounted(() => {
                         <label class="label">
                             <span class="label-text">个人主页</span>
                         </label>
-                        <input v-model="memberForm.url" type="text" placeholder="https://"
+                        <input v-model="memberForm.url" type="text" placeholder="填B站UID或是URL"
                             class="input input-bordered w-full">
                     </div>
 
@@ -240,7 +248,7 @@ onMounted(() => {
                                         <h3 class="text-lg font-bold">{{ member.name }}</h3>
                                     </div>
                                 </div>
-                                <div class="mt-4">
+                                <div class="mt-4 text-gray-700 dark:text-gray-300">
                                     <p class="text-sm">{{ member.bio || '没有填写简介...' }}</p>
                                 </div>
                                 <div class="mt-2 text-xs opacity-50">
@@ -266,6 +274,12 @@ onMounted(() => {
 </template>
 
 <style>
+.text-gray-700 {
+    word-break: break-all;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
 .card {
     transition: transform 0.2s;
 }
