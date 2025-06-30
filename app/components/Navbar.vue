@@ -1,7 +1,7 @@
 <script setup>
 const items = [
     { name: '首页', path: '/' },
-    { name: '留言', path: '/message' },
+    { name: '留言', path: '/Message' },
     { name: '入部', path: '/Member' },
     { name: '壁纸', path: '/Wallpaper' },
 ]

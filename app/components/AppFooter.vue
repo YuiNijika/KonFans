@@ -10,7 +10,7 @@
       <p>
         <a href="https://beian.miit.gov.cn/" target="_blank">鲁ICP备2023052135号</a>
         <br />
-        © 轻音部 {{ new Date().getFullYear() }} All right reserved
+        © KonFans {{ new Date().getFullYear() }} All right reserved
       </p>
     </aside>
     <nav class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">

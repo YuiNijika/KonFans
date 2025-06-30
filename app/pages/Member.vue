@@ -5,8 +5,6 @@ useSeoMeta({
     keywords: '轻音部, 成员, 列表'
 })
 
-import md5 from 'md5'
-
 const baseUrl = '/apiService/member';
 
 const members = ref([]);
@@ -28,14 +26,6 @@ const memberForm = ref({
 });
 
 const showMemberForm = ref(false);
-
-// 生成头像url
-const getGravatar = (email, size = 80) => {
-    if (!email) return `https://www.cravatar.cn/avatar/?s=${size}&d=retro`;
-    const trimmedEmail = email.trim().toLowerCase();
-    const hash = md5(trimmedEmail);
-    return `https://www.cravatar.cn/avatar/${hash}?s=${size}&d=retro`;
-};
 
 // 获取成员列表
 const fetchMembers = async () => {
@@ -189,6 +179,14 @@ onMounted(() => {
 
                     <div class="form-control">
                         <label class="label">
+                            <span class="label-text">个人主页</span>
+                        </label>
+                        <input v-model="memberForm.url" type="text" placeholder="https://"
+                            class="input input-bordered w-full">
+                    </div>
+
+                    <div class="form-control">
+                        <label class="label">
                             <span class="label-text">个人简介</span>
                         </label>
                         <textarea v-model="memberForm.bio" class="textarea h-24 w-full"
@@ -235,21 +233,15 @@ onMounted(() => {
                                 <div class="flex items-center space-x-4">
                                     <div class="avatar">
                                         <div class="w-16 rounded-full">
-                                            <img :src="getGravatar(member.email, 160)" :alt="member.name">
+                                            <img :src="member.avatar" :alt="member.name">
                                         </div>
                                     </div>
                                     <div>
                                         <h3 class="text-lg font-bold">{{ member.name }}</h3>
-                                        <p class="text-sm opacity-70">{{ member.email }}</p>
-                                        <p v-if="member.url" class="text-sm mt-1">
-                                            <a :href="member.url" target="_blank" class="link link-primary">{{
-                                                member.url
-                                                }}</a>
-                                        </p>
                                     </div>
                                 </div>
-                                <div v-if="member.bio" class="mt-4">
-                                    <p class="text-sm">{{ member.bio }}</p>
+                                <div class="mt-4">
+                                    <p class="text-sm">{{ member.bio || '没有填写简介...' }}</p>
                                 </div>
                                 <div class="mt-2 text-xs opacity-50">
                                     加入时间: {{ new Date(member.created_at).toLocaleDateString() }}

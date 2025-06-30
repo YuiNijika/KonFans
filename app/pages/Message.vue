@@ -1,5 +1,4 @@
 <script setup>
-import md5 from 'md5'
 
 useSeoMeta({
     title: '留言',
@@ -29,14 +28,6 @@ const formData = ref({
 
 // 回复状态
 const replyingTo = ref(null);
-
-// 生成头像url
-const getGravatar = (email, size = 80) => {
-    if (!email) return `https://www.cravatar.cn/avatar/?s=${size}&d=retro`;
-    const trimmedEmail = email.trim().toLowerCase();
-    const hash = md5(trimmedEmail);
-    return `https://www.cravatar.cn/avatar/${hash}?s=${size}&d=retro`;
-};
 
 // 设置回复
 const setReply = (comment) => {
@@ -223,7 +214,7 @@ onMounted(() => {
                         <div class="chat chat-start">
                             <div class="chat-image avatar">
                                 <div class="w-10 rounded-full">
-                                    <img :src="getGravatar(comment.email, 80)" :alt="comment.name" />
+                                    <img :src="comment.avatar" :alt="comment.name" />
                                 </div>
                             </div>
                             <div class="chat-header">
@@ -240,7 +231,7 @@ onMounted(() => {
                             <div v-for="reply in comment.replies" :key="reply.id" class="chat chat-start">
                                 <div class="chat-image avatar">
                                     <div class="w-8 rounded-full">
-                                        <img :src="getGravatar(reply.email, 40)" :alt="reply.name" />
+                                        <img :src="reply.avatar" :alt="reply.name" />
                                     </div>
                                 </div>
                                 <div class="chat-header">
