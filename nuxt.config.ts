@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
-const baseUrl = 'https://kon-server.x-x.work/api';
-// const baseUrl = 'https://deer-server-dev.x-x.work/api';
+// const baseUrl = 'https://kon-server.x-x.work/api';
+const baseUrl = 'https://kon-server-dev.x-x.work/api';
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
